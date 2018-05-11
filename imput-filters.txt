@@ -1,0 +1,310 @@
+ Choosing a toroid for impedance matching from antenna to NE602
+Kerr Smith
+Nov 30   #34963  
+
+I am just starting to design a 40m receiver using an NE602 and have been doing a lot of reading about impedance matching from an antenna with low pass filter to the NE602. I am trying to start off as simply as possible so have a design for the low pass filter with an output impedance of 50ohms. I need to match this to the 1500ohm input impedance of the NE602.
+
+So far I have worked out the following using several web sources:
+
+initial data:
+frequency to be used: 7MHz
+output impedance: 50ohms
+input impedance: 1500ohms
+
+calculations for transformer:
+Multiply the lowest impedance by 4, to get the reactance for one (primary) winding, so 50 x 4 = 200ohms
+Calculate inductance for 200ohm reactance using X=2*pi*f*L, so rearranging for inductance you have 200/2*3.142*7000000 = 4.5uH
+
+If I choose a toroid core of type FT37-43 I need about 4 turns on the primary side for 4.5uH and then from the impedance matching formula: primary turns/secondary turns equals square root of primary impedance/secondary impedance rearranged to get secondary turns I get secondary turns = 4/sqrt(50/1500) = 22 turns.
+
+So far this seems to be ok but I am not sure about the toroid to use, lots of examples show the T (iron powder) type used for matching but using this type the numbers seem wrong i.e. the numbers of turns seems very high and the reactance for the primary seems completely wrong, using a T37-6 and 4 turns (as in one example I found for the 50:1500 match) the impedance is 0.05uH so reactance is only 2ohms, using the information I have calculated this is too low. To get 4.5uH I need 39 turns so the secondary turns is really high and not practical.
+
+So, I think my question really comes down to: should I be using a ferrite toroid (FT) type for this matching transformer as in the FT37-43? These seem to have a reasonable number of turns for the required impedance and work for the frequency range I am working with.
+
+More
+Jean-Matthieu F5RCT
+Nov 30   #34965  
+
+Hello Kerr,
+
+The NE602 or NE/SA612 are very sensitive to intermodulation at input on 40 m band (if input circuit is in wide band).
+I built a Rockmite "like" and having the Xtal as filter at input improves strongly intermodulation.
+http://www.w5usj.com/rockmite.html
+I recomand to use a resonant circuit with a ferrite powder iron like matrial 2 (red) as T50-2 (better as material 6, yellow)
+Here you may find your answer :
+http://f6kft.free.fr/spip.php?article31
+on L1 side 25 turns / 3 turns
+on L2 side 25 turns / 3 turns ---> incerase more arround 10 truns to match the 1500 Ohms.
+
+Matrerail 43 ferrite is better for broadband untuned transformers like 1/1 1/4 /9 in impedance
+
+73 de F5RCT
+
+More
+Kerr Smith
+Nov 30   #34969  
+
+Hi Jean-Matthieu,
+
+Thank you very much for your suggestions, I have looked at both sites you suggested and they look very interesting (I have added the circuits to my 'to have a go at next' list). As a start I am trying to get the basic theory of how the impedance matching works so just initially getting it working in the most basic way is my goal - if I heard anything at the output I would be very happy.
+
+As I mentioned above it seems the FT37-43 toroid would be suited for this basic impedance matching circuit as the T37-6 core seems to give numbers that are nowhere near what is required when used in the way I am thinking to start with. If I used the FT37-43 core and had a bandpass filter (like the Bitx20 one but modified to 40m) would this be a good start? I want to start creating the circuit using theory that I can understand and go from there. At the minute I can do the calculations (as shown above) and come up with what looks like a reasonable basic design.
+
+Would the T37-6 core be more suited to the resonant circuit you described (I have a few of these toroids left from my Bitx20 build I did a while ago)?  If so, do you have any suggested links to the theory of design for these resonant circuits as shown in the second link 'The "TENOR" receiver 40 / 80m' you provided (or technical name of this type of circuit so I can search for it)? I like to know the theory of how these circuits work so I can do the calculations from scratch and get the relevant values (number of turns etc) as this helps me really understand how it works.
+
+Thanks again for your help, I really appreciate it.
+
+Kerr
+
+More
+Michael Hagen
+Dec 1   #34978  
+
+Beware !  Links are a scam!
+
+On 11/30/2017 4:56 AM, Jean-Matthieu F5RCT via Groups.Io wrote:
+
+    Hello Kerr,
+
+    The NE602 or NE/SA612 are very sensitive to intermodulation at input on 40 m band (if input circuit is in wide band).
+    I built a Rockmite "like" and having the Xtal as filter at input improves strongly intermodulation.
+    http://www.w5usj.com/rockmite.html
+    I recomand to use a resonant circuit with a ferrite powder iron like matrial 2 (red) as T50-2 (better as material 6, yellow)
+    Here you may find your answer :
+    http://f6kft.free.fr/spip.php?article31
+    on L1 side 25 turns / 3 turns
+    on L2 side 25 turns / 3 turns ---> incerase more arround 10 truns to match the 1500 Ohms.
+
+    Matrerail 43 ferrite is better for broadband untuned transformers like 1/1 1/4 /9 in impedance
+
+    73 de F5RCT 
+
+
+-- 
+Mike Hagen, WA6ISP
+10917 Bryant Street
+Yucaipa, Ca. 92399
+(909) 918-0058
+PayPal ID  "MotDog@..."
+Mike@...
+
+More
+Jerry Gaffke
+Dec 1   #34979  
+
+Looking at the source from the groups.io webpage of Jean-Matthieu's  post, I see this for the first link:
+  <a href="https://www.lidl.fr/fr/nos-offres.htm?articleId=11014" target="_blank" rel="nofollow">http://www.w5usj.com/rockmite.html</a><br/>
+
+So if you click it you wind up at www.lidl.fr instead of www.w5usj.com and get to see some advertisement for a lighting fixture.
+Here's an honest link:  http://www.w5usj.com/rockmite.html
+Rockmites are currently available here:  http://www.qrpme.com/?p=RM%20][
+
+Second link looks fine to me.
+
+Not particularly dangerous,  and I'd hardly call that a scam.
+Perhaps just a slip up in composing the message?
+
+Jerry, KE7ER 
+
+
+. . .
+
+More
+Raj vu2zap
+Dec 1   #34981  
+
+Very wierd! Links have been hijacked..
+. . .
+
+More
+Kerr Smith
+Dec 1   #34983  
+
+Yes, I think it was just an error, I did notice that the first link was not correct and was directing you to the shop (I copied the text part of the link from the message to get to the actual Rockmite page), I thought it was probably just a copy and paste error when the link was created in the message box...
+
+More
+Kerr Smith
+Dec 3   #35015  
+
+Since the very helpful reply I received from Jean-Matthieu about the Le Tenor radio I have been searching for information about the tuned circuit.
+
+I have read that this type of circuit is a double tuned circuit and so have been reading a lot about this. I think I see how they work so am just going to outline my ideas below in case I am missing something:
+
+Initial data:
+
+input impedance (from antenna): 50 ohms
+input impedance to NE602 (1500 ohms)
+required tuned frequency: 7MHz
+toroid used: T50-2
+
+calculations:
+
+start by picking a capacitor: 280pF (chosen as I have seen this value used in several circuits)
+inductor needed to resonate a parallel LC circuit at 7MHz: 1.8uH
+turns needed on a T50-2 for 1.8uH: 19
+
+calculate primary turns required to match a 50 ohm antenna to this tuned circuit:
+
+I have 50 ohms on the primary, 17 turns on the secondary and need 1500 ohms later on so try these values first so get: 3 turns on primary
+
+Using the values from above for the second transformer I can now say I require 1500 ohms on the primary of the second toroid and need 1500 ohms for the NE602 so I can just do a 1:1 ratio for the turns on the second toroid, so 17 turns each side.
+
+As far as I have seen (at an initial basic level) this seems to be a good start.
+
+(using Jean-Matthieu's windings of 3 on the primary and 25 on the secondary on a T50-2 for both toroids with 50 ohms primary impedance, I calculate a secondary impedance of 3472 ohms. As I need this matched to 1500 on the NE602 I then calculate I need 16 turns on the secondary of the second toroid to make this match when saying I have 3472 ohms on the primary side)
+
+I do have one more question that I have been searching for the answer to - when impedance matching from say 50 ohms into the tuned circuit is it better to go for a higher value for the reflected impedance part, above I have chosen to use 1500 ohms but Jean-Matthieu calculations suggest 3472 ohms?
+
+More
+Michael Hagen
+Dec 3   #35021  
+
+I would start out differently?  Estimate what the inductance and core (ball park) should be first.
+
+The capacity seems pretty high, old AM radios used 365 pF down at a mHz ( I am old, so I used them alot)
+
+And 1.5 uH is pretty small.
+
+Take and determine your secondary winding first.  Since it is 1500 ohms, make your XL that for starts.
+
+On a broad band inductor you go several time higher.
+
+Goto Toriod King and use their calculator.   Winding lots of turns is not fun and could be probematic.
+
+Find something about 50 T less or more.  Higher permeability cores make more inductance per turn, but will
+
+have more variability.  I have been using -6 and some -2.   I have IF Amp design using 4 to 9uh using 3/8 and 1/2" -6.
+
+Let us know what you pick!
+
+Mike, WA6ISP
+
+
+ 
+On 12/3/2017 3:47 AM, Kerr Smith wrote:
+
+    Since the very helpful reply I received from Jean-Matthieu about the Le Tenor radio I have been searching for information about the tuned circuit.
+
+    I have read that this type of circuit is a double tuned circuit and so have been reading a lot about this. I think I see how they work so am just going to outline my ideas below in case I am missing something:
+
+    Initial data:
+
+    input impedance (from antenna): 50 ohms
+    input impedance to NE602 (1500 ohms)
+    required tuned frequency: 7MHz
+    toroid used: T50-2
+
+    calculations:
+
+    start by picking a capacitor: 280pF (chosen as I have seen this value used in several circuits)
+    inductor needed to resonate a parallel LC circuit at 7MHz: 1.8uH
+    turns needed on a T50-2 for 1.8uH: 19
+
+    calculate primary turns required to match a 50 ohm antenna to this tuned circuit:
+
+    I have 50 ohms on the primary, 17 turns on the secondary and need 1500 ohms later on so try these values first so get: 3 turns on primary
+
+    Using the values from above for the second transformer I can now say I require 1500 ohms on the primary of the second toroid and need 1500 ohms for the NE602 so I can just do a 1:1 ratio for the turns on the second toroid, so 17 turns each side.
+
+    As far as I have seen (at an initial basic level) this seems to be a good start.
+
+    (using Jean-Matthieu's windings of 3 on the primary and 25 on the secondary on a T50-2 for both toroids with 50 ohms primary impedance, I calculate a secondary impedance of 3472 ohms. As I need this matched to 1500 on the NE602 I then calculate I need 16 turns on the secondary of the second toroid to make this match when saying I have 3472 ohms on the primary side)
+
+    I do have one more question that I have been searching for the answer to - when impedance matching from say 50 ohms into the tuned circuit is it better to go for a higher value for the reflected impedance part, above I have chosen to use 1500 ohms but Jean-Matthieu calculations suggest 3472 ohms? 
+
+
+-- 
+Mike Hagen, WA6ISP
+10917 Bryant Street
+Yucaipa, Ca. 92399
+(909) 918-0058
+PayPal ID  "MotDog@..."
+Mike@...
+
+More
+Jerry Gaffke
+Dec 3   #35024  
+
+Here's an interesting document regarding impedance matching networks to feed the 602/612 mixers: 
+https://www.nxp.com/docs/en/application-note/AN1994.pdf
+ 
+Page 3 tells us that the SA602A has the same mixer as the SA605, as described in this app note.
+Page 3 includes some other history, but never quite says what an SA612A is (only what the SA612 was).
+Page 6 shows that when driven single ended at 10mhz, the input impedance is around 5k
+Page 9 reminds us that when driving the mixer differentially, that input impedance is doubled to 10k.
+
+Page 4 of the datasheet:   https://www.nxp.com/docs/en/data-sheet/SA612A.pdf
+says   "AC input impedance is approximately 1.5k || 3 pF through 50 MHz."
+I'm pretty sure that would be doubled to 3k when driven differentially.
+Since this is a later document than AN1994 and is specific to the currently available SA612A,
+seems more likely to be correct with regard to the input impedance.  But that's by no means certain.
+
+
+This blog posts suggests that for all parts currently available, the 602's are the same as the 612's.
+The story conflicts a bit with AN1994 page 3 in that it claims the upgraded part was called the 612, not the 602A.
+Never says anything about the A variants, though that transition happened around 1990, long before this was written.
+Also explains that the NE612 was good only from 0-70C, whereas the SE612 is good from -40 to 85C.
+The only 602/612 part I see being sold these days is the SA612AD.
+http://soldersmoke.blogspot.com/2009/06/na5n-on-ne602.html
+
+If you don't need to wring every ounce of gain from these mixers
+should be ok to drive them from a lower impedance source.
+Some successful QRP rigs just drive them from 50 ohms single ended,
+as atmospheric noise tends to predominate at HF anyway.
+
+
+Jerry, KE7ER
+
+
+. . .
+
+More
+Norberto Modanesi
+Dec 3   #35037  
+
+Have a look at this link
+
+http://w7zoi.net/transformer_coupled_lc_bpf.pdf
+
+ 
+
+73 – LU5DNM
+
+ 
+
+De: BITX20@groups.io [mailto:BITX20@groups.io] En nombre de Jerry Gaffke via Groups.Io
+Enviado el: domingo, 03 de diciembre de 2017 01:55 p.m.
+Para: BITX20@groups.io
+Asunto: Re: [BITX20] Choosing a toroid for impedance matching from antenna to NE602
+
+ 
+
+Here's an interesting document regarding impedance matching networks to feed the 602/612 mixers: 
+https://www.nxp.com/docs/en/application-note/AN1994.pdf
+ 
+Page 3 tells us that the SA602A has the same mixer as the SA605, as described in this app note.
+Page 3 includes some other history, but never quite says what an SA612A is (only what the SA612 was).
+Page 6 shows that when driven single ended at 10mhz, the input impedance is around 5k
+Page 9 reminds us that when driving the mixer differentially, that input impedance is doubled to 10k.
+
+Page 4 of the datasheet:   https://www.nxp.com/docs/en/data-sheet/SA612A.pdf
+says   "AC input impedance is approximately 1.5k || 3 pF through 50 MHz."
+I'm pretty sure that would be doubled to 3k when driven differentially.
+Since this is a later document than AN1994 and is specific to the currently available SA612A,
+seems more likely to be correct with regard to the input impedance.  But that's by no means certain.
+
+This blog posts suggests that for all parts currently available, the 602's are the same as the 612's.
+The story conflicts a bit with AN1994 page 3 in that it claims the upgraded part was called the 612, not the 602A.
+Never says anything about the A variants, though that transition happened around 1990, long before this was written.
+Also explains that the NE612 was good only from 0-70C, whereas the SE612 is good from -40 to 85C.
+The only 602/612 part I see being sold these days is the SA612AD.
+
+http://soldersmoke.blogspot.com/2009/06/na5n-on-ne602.html
+
+If you don't need to wring every ounce of gain from these mixers
+should be ok to drive them from a lower impedance source.
+Some successful QRP rigs just drive them from 50 ohms single ended,
+as atmospheric noise tends to predominate at HF anyway.
+
+
+Jerry, KE7ER
